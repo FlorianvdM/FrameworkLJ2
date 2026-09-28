@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\Roles\Get;
 use App\Providers\Roles\Index;
+use App\Providers\Roles\Update;
+use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
@@ -11,5 +14,19 @@ class RoleController extends Controller
         $index = new Index();
 
         return $index->index();
+    }
+
+    public function get(int $id)
+    {
+        $get = new Get();
+
+        return $get->get($id);
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $update = new Update();
+
+        return $update->update($request, $id);
     }
 }

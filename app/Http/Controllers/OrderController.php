@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\Orders\Get;
 use App\Providers\Orders\Index;
+use App\Providers\Orders\Update;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -11,5 +14,19 @@ class OrderController extends Controller
         $index = new Index();
 
         return $index->index();
+    }
+
+    public function get(int $id)
+    {
+        $get = new Get();
+
+        return $get->get($id);
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $update = new Update();
+
+        return $update->update($request, $id);
     }
 }

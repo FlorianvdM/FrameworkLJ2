@@ -1,14 +1,26 @@
 @extends('layouts.app')
 
+@section('title', 'Reviews')
+
 @section('content')
 
+<div class="card">
     <h1>Reviews</h1>
 
-    @foreach ($reviews as $review)
-        <h2>{{ $review->product->name }}</h2>
-        <p>{{ $review->comment }}</p>
-        <p>Door: {{ $review->user->name }}</p>
-        <hr>
-    @endforeach
+    <ul class="list">
+        @foreach ($reviews as $review)
+            <li class="list-item">
+                <span class="list-item-title">
+                    {{ $review->product->name }}
+                    <span class="list-item-sub">{{ $review->comment }}<br>Door: {{ $review->user->name }}</span>
+                </span>
+
+                <div class="list-actions">
+                    <a href="{{ route('reviews.get', $review->id) }}" class="btn">Bekijken</a>
+                </div>
+            </li>
+        @endforeach
+    </ul>
+</div>
 
 @endsection

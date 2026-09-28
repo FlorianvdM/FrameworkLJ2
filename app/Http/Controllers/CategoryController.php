@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\Categories\Get;
 use App\Providers\Categories\Index;
+use App\Providers\Categories\Update;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -13,8 +16,17 @@ class CategoryController extends Controller
         return $index->index();
     }
 
-    public function show(\App\Models\Category $category)
+    public function get(int $id)
     {
-        return view('categories.show', compact('category'));
+        $get = new Get();
+
+        return $get->get($id);
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $update = new Update();
+
+        return $update->update($request, $id);
     }
 }

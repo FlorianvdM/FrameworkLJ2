@@ -1,20 +1,26 @@
 @extends('layouts.app')
 
+@section('title', 'Orderregels')
+
 @section('content')
 
-    <h1>Order rows</h1>
+<div class="card">
+    <h1>Orderregels</h1>
 
-    <table border="1" cellpadding="5">
+    <table>
         <tr>
             <th>Order</th>
             <th>Product</th>
+            <th></th>
         </tr>
         @foreach ($orderRows as $orderRow)
             <tr>
                 <td>{{ $orderRow->order->id }}</td>
                 <td>{{ $orderRow->product->name }}</td>
+                <td><a href="{{ route('orderrows.get', $orderRow->id) }}" class="btn">Bekijken</a></td>
             </tr>
         @endforeach
     </table>
+</div>
 
 @endsection

@@ -1,11 +1,25 @@
 @extends('layouts.app')
 
+@section('title', 'Rollen')
+
 @section('content')
 
-    <h1>Roles</h1>
+<div class="card">
+    <h1>Rollen</h1>
 
-    @foreach ($roles as $role)
-        <h2>{{ $role->name }}</h2>
-    @endforeach
+    <ul class="list">
+        @foreach ($roles as $role)
+            <li class="list-item">
+                <span class="list-item-title">
+                    {{ $role->name }}
+                </span>
+
+                <div class="list-actions">
+                    <a href="{{ route('roles.get', $role->id) }}" class="btn">Bekijken</a>
+                </div>
+            </li>
+        @endforeach
+    </ul>
+</div>
 
 @endsection

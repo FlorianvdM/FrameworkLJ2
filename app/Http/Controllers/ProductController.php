@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Providers\Products\Get;
 use App\Providers\Products\Index;
+use App\Providers\Products\Update;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -14,8 +16,17 @@ class ProductController extends Controller
         return $index->index();
     }
 
-    public function show(Product $product)
+    public function get(int $id)
     {
-        return view('products.show', compact('product'));
+        $get = new Get();
+
+        return $get->get($id);
+    }
+
+    public function update(Request $request, int $id)
+    {
+        $update = new Update();
+
+        return $update->update($request, $id);
     }
 }

@@ -1,21 +1,26 @@
 @extends('layouts.app')
 
+@section('title', 'Producten')
+
 @section('content')
 
-    <h1>Products</h1>
+<div class="card">
+    <h1>Producten</h1>
 
-    @foreach ($products as $product)
-        <h2>
-            <a href="{{ route('products.show', $product) }}">
-                {{ $product->name }}
-            </a>
-        </h2>
+    <ul class="list">
+        @foreach ($products as $product)
+            <li class="list-item">
+                <span class="list-item-title">
+                    {{ $product->name }}
+                    <span class="list-item-sub">Categorie: {{ $product->category->name }}</span>
+                </span>
 
-        <p>{{ $product->description }}</p>
-
-        <p>Categorie: {{ $product->category->name }}</p>
-
-        <hr>
-    @endforeach
+                <div class="list-actions">
+                    <a href="{{ route('products.get', $product->id) }}" class="btn">Bekijken</a>
+                </div>
+            </li>
+        @endforeach
+    </ul>
+</div>
 
 @endsection
