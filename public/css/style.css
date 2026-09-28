@@ -1,3 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f5f7;
+    color: #222;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header en menu */
+header {
+    background: #1f2937;
+    padding: 14px 0;
+}
+
+header .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.logo {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.logo:hover {
+    color: #fff;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+nav a {
+    color: #d1d5db;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+nav a:hover {
+    background: #374151;
+    color: #fff;
+}
+
+/* Inhoud */
+main {
+    padding-top: 28px;
+    padding-bottom: 40px;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 8px;
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin: 20px 0 4px;
+}
+
+p {
+    margin: 4px 0 10px;
+}
+
+a {
+    color: #2563eb;
+}
+
+a:hover {
+    color: #1d4ed8;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 18px 0;
+}
+
+/* Tabellen */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+th {
+    background: #2563eb;
+    color: #fff;
+    text-align: left;
+    padding: 10px 14px;
+}
+
+td {
+    padding: 10px 14px;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:nth-child(even) td {
+    background: #f9fafb;
+}
+
+tr:hover td {
+    background: #eff6ff;
+}
+
+/* Tabel in een card: geen dubbele schaduw */
+.card table {
+    box-shadow: none;
+}
+
 /* Hero (homepage) */
 .hero {
     background: #fff;
