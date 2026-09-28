@@ -24,6 +24,12 @@ Route::get('/categories/{id}', [CategoryController::class, 'get'])
 Route::put('/categories/{id}', [CategoryController::class, 'update'])
     ->name('categories.update');
 
+Route::post('/categories/create', [CategoryController::class, 'create'])
+    ->name('categories.create');
+
+Route::delete('/categories/{id}', [CategoryController::class, 'delete'])
+    ->name('categories.delete');
+
 // Products
 Route::get('/products', [ProductController::class, 'index'])
     ->name('products.index');

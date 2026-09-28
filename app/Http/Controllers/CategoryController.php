@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\Categories\Create;
+use App\Providers\Categories\Delete;
 use App\Providers\Categories\Get;
 use App\Providers\Categories\Index;
 use App\Providers\Categories\Update;
@@ -28,5 +30,19 @@ class CategoryController extends Controller
         $update = new Update();
 
         return $update->update($request, $id);
+    }
+
+    public function create(Request $request)
+    {
+        $create = new Create();
+
+        return $create->create($request);
+    }
+
+    public function delete(int $id)
+    {
+        $delete = new Delete();
+
+        return $delete->delete($id);
     }
 }
