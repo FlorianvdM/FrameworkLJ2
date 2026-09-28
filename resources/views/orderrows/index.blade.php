@@ -5,7 +5,13 @@
 @section('content')
 
 <div class="card">
-    <h1>Orderregels</h1>
+    <div class="card-header">
+        <h1>Orderregels</h1>
+
+        <button type="button" id="open-create-orderrow" class="btn">
+            Nieuwe orderregel
+        </button>
+    </div>
 
     <table>
         <tr>
@@ -17,10 +23,38 @@
             <tr>
                 <td>{{ $orderRow->order->id }}</td>
                 <td>{{ $orderRow->product->name }}</td>
-                <td><a href="{{ route('orderrows.get', $orderRow->id) }}" class="btn">Bekijken</a></td>
+                <td>
+                    <div class="list-actions">
+                        <a href="{{ route('orderrows.get', $orderRow->id) }}" class="btn">Bekijken</a>
+
+                        <form
+                            method="POST"
+                            action="{{ route('orderrows.delete', $orderRow->id) }}"
+                            style="display: inline;"
+                            onsubmit="return confirm('Weet je zeker dat je deze orderregel wilt verwijderen?');"
+                        >
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Verwijderen</button>
+                        </form>
+                    </div>
+                </td>
             </tr>
         @endforeach
     </table>
 </div>
+
+@include('orderrows.partials.create')
+
+<script>
+    const orderRowModal = document.getElementById('create-orderrow-modal');
+    const openOrderRowBtn = document.getElementById('open-create-orderrow');
+    const closeOrderRowBtn = document.getElementById('close-create-orderrow');
+    const cancelOrderRowBtn = document.getElementById('cancel-create-orderrow');
+
+    openOrderRowBtn?.addEventListener('click', () => orderRowModal.showModal());
+    closeOrderRowBtn?.addEventListener('click', () => orderRowModal.close());
+    cancelOrderRowBtn?.addEventListener('click', () => orderRowModal.close());
+</script>
 
 @endsection

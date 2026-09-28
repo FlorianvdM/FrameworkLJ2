@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $price
  * @property string $effdate
  * @property int $product_id
- *
  * @property-read Product $product
  */
 class Price extends Model
@@ -26,5 +25,10 @@ class Price extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function canDelete(): bool
+    {
+        return true;
     }
 }

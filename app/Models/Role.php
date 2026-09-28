@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @property int $id
  * @property string $name
- *
  * @property-read Collection<int, User> $users
  */
 class Role extends Model
@@ -23,5 +22,14 @@ class Role extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    public function canDelete(): bool
+    {
+        if (isset($this->users_count)) {
+            return $this->users_count === 0;
+        }
+
+        return ! $this->users()->exists();
     }
 }

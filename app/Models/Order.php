@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $order_date
  * @property int $status
  * @property int $user_id
- *
  * @property-read User $user
  * @property-read Collection<int, OrderRow> $orderRows
  */
@@ -34,5 +33,14 @@ class Order extends Model
     public function orderRows(): HasMany
     {
         return $this->hasMany(OrderRow::class);
+    }
+
+    public function canDelete(): bool
+    {
+        if (isset($this->order_rows_count)) {
+            return $this->order_rows_count === 0;
+        }
+
+        return ! $this->orderRows()->exists();
     }
 }

@@ -46,4 +46,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
+
+    public function canDelete(): bool
+    {
+        if (isset($this->reviews_count) && isset($this->orders_count)) {
+            return $this->reviews_count === 0 && $this->orders_count === 0;
+        }
+
+        return ! $this->reviews()->exists() && ! $this->orders()->exists();
+    }
 }

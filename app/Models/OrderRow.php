@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property int $order_id
  * @property int $product_id
- *
  * @property-read Order $order
  * @property-read Product $product
  */
@@ -30,5 +29,10 @@ class OrderRow extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function canDelete(): bool
+    {
+        return true;
     }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Providers\OrderRows;
 
+use App\Models\Order;
 use App\Models\OrderRow;
+use App\Models\Product;
 
 class Index
 {
@@ -10,6 +12,10 @@ class Index
     {
         $orderRows = OrderRow::with(['order', 'product'])->get();
 
-        return view('orderrows.index', compact('orderRows'));
+        return view('orderrows.index', [
+            'orderRows' => $orderRows,
+            'orders' => Order::all(),
+            'products' => Product::all(),
+        ]);
     }
 }

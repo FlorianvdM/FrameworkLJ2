@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $comment
  * @property int $user_id
  * @property int $product_id
- *
  * @property-read User $user
  * @property-read Product $product
  */
@@ -32,5 +31,10 @@ class Review extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function canDelete(): bool
+    {
+        return true;
     }
 }

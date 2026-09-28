@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\Users\Create;
+use App\Providers\Users\Delete;
 use App\Providers\Users\Get;
 use App\Providers\Users\Index;
 use App\Providers\Users\Update;
@@ -11,22 +13,36 @@ class UserController extends Controller
 {
     public function index()
     {
-        $index = new Index();
+        $index = new Index;
 
         return $index->index();
     }
 
     public function get(int $id)
     {
-        $get = new Get();
+        $get = new Get;
 
         return $get->get($id);
     }
 
     public function update(Request $request, int $id)
     {
-        $update = new Update();
+        $update = new Update;
 
         return $update->update($request, $id);
+    }
+
+    public function create(Request $request)
+    {
+        $create = new Create;
+
+        return $create->create($request);
+    }
+
+    public function delete(int $id)
+    {
+        $delete = new Delete;
+
+        return $delete->delete($id);
     }
 }
