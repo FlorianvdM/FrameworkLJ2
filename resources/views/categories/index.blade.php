@@ -43,15 +43,4 @@
 
 @include('categories.partials.create')
 
-<script>
-    const modal = document.getElementById('create-category-modal');
-    const openBtn = document.getElementById('open-create-category');
-    const closeBtn = document.getElementById('close-create-category');
-    const cancelBtn = document.getElementById('cancel-create-category');
-
-    openBtn?.addEventListener('click', () => modal.showModal());
-    closeBtn?.addEventListener('click', () => modal.close());
-    cancelBtn?.addEventListener('click', () => modal.close());
-</script>
-
 @endsection
