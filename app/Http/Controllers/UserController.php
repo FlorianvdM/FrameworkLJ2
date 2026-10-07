@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Interfaces\ControllerInterface;
 use App\Providers\Users\Create;
 use App\Providers\Users\Delete;
 use App\Providers\Users\Get;
@@ -9,7 +10,7 @@ use App\Providers\Users\Index;
 use App\Providers\Users\Update;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends Controller implements ControllerInterface
 {
     public function index()
     {

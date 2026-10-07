@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Interfaces\ControllerInterface;
 use App\Providers\Reviews\Create;
 use App\Providers\Reviews\Delete;
 use App\Providers\Reviews\Get;
@@ -9,7 +10,7 @@ use App\Providers\Reviews\Index;
 use App\Providers\Reviews\Update;
 use Illuminate\Http\Request;
 
-class ReviewController extends Controller
+class ReviewController extends Controller implements ControllerInterface
 {
     public function index()
     {

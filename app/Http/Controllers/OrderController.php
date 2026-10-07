@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Interfaces\ControllerInterface;
 use App\Providers\Orders\Create;
 use App\Providers\Orders\Delete;
 use App\Providers\Orders\Get;
@@ -9,7 +10,7 @@ use App\Providers\Orders\Index;
 use App\Providers\Orders\Update;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class OrderController extends Controller implements ControllerInterface
 {
     public function index()
     {

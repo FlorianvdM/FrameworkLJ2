@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Interfaces\ControllerInterface;
 use App\Providers\Products\Create;
 use App\Providers\Products\Delete;
 use App\Providers\Products\Get;
@@ -9,7 +10,7 @@ use App\Providers\Products\Index;
 use App\Providers\Products\Update;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ProductController extends Controller implements ControllerInterface
 {
     public function index()
     {

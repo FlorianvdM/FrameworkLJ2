@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Interfaces\ControllerInterface;
 use App\Providers\Roles\Create;
 use App\Providers\Roles\Delete;
 use App\Providers\Roles\Get;
@@ -9,7 +10,7 @@ use App\Providers\Roles\Index;
 use App\Providers\Roles\Update;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class RoleController extends Controller implements ControllerInterface
 {
     public function index()
     {

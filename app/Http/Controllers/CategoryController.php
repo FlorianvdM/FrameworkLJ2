@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Interfaces\ControllerInterface;
 use App\Providers\Categories\Create;
 use App\Providers\Categories\Delete;
 use App\Providers\Categories\Get;
@@ -9,7 +10,7 @@ use App\Providers\Categories\Index;
 use App\Providers\Categories\Update;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CategoryController extends Controller implements ControllerInterface
 {
     public function index()
     {

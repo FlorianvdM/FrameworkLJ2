@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Interfaces\ControllerInterface;
 use App\Providers\Prices\Create;
 use App\Providers\Prices\Delete;
 use App\Providers\Prices\Get;
@@ -9,7 +10,7 @@ use App\Providers\Prices\Index;
 use App\Providers\Prices\Update;
 use Illuminate\Http\Request;
 
-class PriceController extends Controller
+class PriceController extends Controller implements ControllerInterface
 {
     public function index()
     {

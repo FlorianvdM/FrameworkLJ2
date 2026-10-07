@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderRowController;
@@ -12,132 +13,149 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})->name('home');
+
+// Authenticatie
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'show'])
+        ->name('login');
+
+    Route::post('/login', [AuthController::class, 'login'])
+        ->name('login.attempt');
 });
 
-// Categories
-Route::get('/categories', [CategoryController::class, 'index'])
-    ->name('categories.index');
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->name('logout');
 
-Route::get('/categories/{id}', [CategoryController::class, 'get'])
-    ->name('categories.get');
+// Beveiligde routes (alleen voor ingelogde gebruikers)
+Route::middleware('auth')->group(function () {
 
-Route::put('/categories/{id}', [CategoryController::class, 'update'])
-    ->name('categories.update');
+    // Categories
+    Route::get('/categories', [CategoryController::class, 'index'])
+        ->name('categories.index');
 
-Route::post('/categories/create', [CategoryController::class, 'create'])
-    ->name('categories.create');
+    Route::get('/categories/{id}', [CategoryController::class, 'get'])
+        ->name('categories.get');
 
-Route::delete('/categories/{id}', [CategoryController::class, 'delete'])
-    ->name('categories.delete');
+    Route::put('/categories/{id}', [CategoryController::class, 'update'])
+        ->name('categories.update');
 
-// Products
-Route::get('/products', [ProductController::class, 'index'])
-    ->name('products.index');
+    Route::post('/categories/create', [CategoryController::class, 'create'])
+        ->name('categories.create');
 
-Route::get('/products/{id}', [ProductController::class, 'get'])
-    ->name('products.get');
+    Route::delete('/categories/{id}', [CategoryController::class, 'delete'])
+        ->name('categories.delete');
 
-Route::put('/products/{id}', [ProductController::class, 'update'])
-    ->name('products.update');
+    // Products
+    Route::get('/products', [ProductController::class, 'index'])
+        ->name('products.index');
 
-Route::post('/products/create', [ProductController::class, 'create'])
-    ->name('products.create');
+    Route::get('/products/{id}', [ProductController::class, 'get'])
+        ->name('products.get');
 
-Route::delete('/products/{id}', [ProductController::class, 'delete'])
-    ->name('products.delete');
+    Route::put('/products/{id}', [ProductController::class, 'update'])
+        ->name('products.update');
 
-// Prices
-Route::get('/prices', [PriceController::class, 'index'])
-    ->name('prices.index');
+    Route::post('/products/create', [ProductController::class, 'create'])
+        ->name('products.create');
 
-Route::get('/prices/{id}', [PriceController::class, 'get'])
-    ->name('prices.get');
+    Route::delete('/products/{id}', [ProductController::class, 'delete'])
+        ->name('products.delete');
 
-Route::put('/prices/{id}', [PriceController::class, 'update'])
-    ->name('prices.update');
+    // Prices
+    Route::get('/prices', [PriceController::class, 'index'])
+        ->name('prices.index');
 
-Route::post('/prices/create', [PriceController::class, 'create'])
-    ->name('prices.create');
+    Route::get('/prices/{id}', [PriceController::class, 'get'])
+        ->name('prices.get');
 
-Route::delete('/prices/{id}', [PriceController::class, 'delete'])
-    ->name('prices.delete');
+    Route::put('/prices/{id}', [PriceController::class, 'update'])
+        ->name('prices.update');
 
-// Reviews
-Route::get('/reviews', [ReviewController::class, 'index'])
-    ->name('reviews.index');
+    Route::post('/prices/create', [PriceController::class, 'create'])
+        ->name('prices.create');
 
-Route::get('/reviews/{id}', [ReviewController::class, 'get'])
-    ->name('reviews.get');
+    Route::delete('/prices/{id}', [PriceController::class, 'delete'])
+        ->name('prices.delete');
 
-Route::put('/reviews/{id}', [ReviewController::class, 'update'])
-    ->name('reviews.update');
+    // Reviews
+    Route::get('/reviews', [ReviewController::class, 'index'])
+        ->name('reviews.index');
 
-Route::post('/reviews/create', [ReviewController::class, 'create'])
-    ->name('reviews.create');
+    Route::get('/reviews/{id}', [ReviewController::class, 'get'])
+        ->name('reviews.get');
 
-Route::delete('/reviews/{id}', [ReviewController::class, 'delete'])
-    ->name('reviews.delete');
+    Route::put('/reviews/{id}', [ReviewController::class, 'update'])
+        ->name('reviews.update');
 
-// Orders
-Route::get('/orders', [OrderController::class, 'index'])
-    ->name('orders.index');
+    Route::post('/reviews/create', [ReviewController::class, 'create'])
+        ->name('reviews.create');
 
-Route::get('/orders/{id}', [OrderController::class, 'get'])
-    ->name('orders.get');
+    Route::delete('/reviews/{id}', [ReviewController::class, 'delete'])
+        ->name('reviews.delete');
 
-Route::put('/orders/{id}', [OrderController::class, 'update'])
-    ->name('orders.update');
+    // Orders
+    Route::get('/orders', [OrderController::class, 'index'])
+        ->name('orders.index');
 
-Route::post('/orders/create', [OrderController::class, 'create'])
-    ->name('orders.create');
+    Route::get('/orders/{id}', [OrderController::class, 'get'])
+        ->name('orders.get');
 
-Route::delete('/orders/{id}', [OrderController::class, 'delete'])
-    ->name('orders.delete');
+    Route::put('/orders/{id}', [OrderController::class, 'update'])
+        ->name('orders.update');
 
-// Order rows
-Route::get('/orderrows', [OrderRowController::class, 'index'])
-    ->name('orderrows.index');
+    Route::post('/orders/create', [OrderController::class, 'create'])
+        ->name('orders.create');
 
-Route::get('/orderrows/{id}', [OrderRowController::class, 'get'])
-    ->name('orderrows.get');
+    Route::delete('/orders/{id}', [OrderController::class, 'delete'])
+        ->name('orders.delete');
 
-Route::put('/orderrows/{id}', [OrderRowController::class, 'update'])
-    ->name('orderrows.update');
+    // Order rows
+    Route::get('/orderrows', [OrderRowController::class, 'index'])
+        ->name('orderrows.index');
 
-Route::post('/orderrows/create', [OrderRowController::class, 'create'])
-    ->name('orderrows.create');
+    Route::get('/orderrows/{id}', [OrderRowController::class, 'get'])
+        ->name('orderrows.get');
 
-Route::delete('/orderrows/{id}', [OrderRowController::class, 'delete'])
-    ->name('orderrows.delete');
+    Route::put('/orderrows/{id}', [OrderRowController::class, 'update'])
+        ->name('orderrows.update');
 
-// Roles
-Route::get('/roles', [RoleController::class, 'index'])
-    ->name('roles.index');
+    Route::post('/orderrows/create', [OrderRowController::class, 'create'])
+        ->name('orderrows.create');
 
-Route::get('/roles/{id}', [RoleController::class, 'get'])
-    ->name('roles.get');
+    Route::delete('/orderrows/{id}', [OrderRowController::class, 'delete'])
+        ->name('orderrows.delete');
 
-Route::put('/roles/{id}', [RoleController::class, 'update'])
-    ->name('roles.update');
+    // Roles
+    Route::get('/roles', [RoleController::class, 'index'])
+        ->name('roles.index');
 
-Route::post('/roles/create', [RoleController::class, 'create'])
-    ->name('roles.create');
+    Route::get('/roles/{id}', [RoleController::class, 'get'])
+        ->name('roles.get');
 
-Route::delete('/roles/{id}', [RoleController::class, 'delete'])
-    ->name('roles.delete');
+    Route::put('/roles/{id}', [RoleController::class, 'update'])
+        ->name('roles.update');
 
-// Users
-Route::get('/users', [UserController::class, 'index'])
-    ->name('users.index');
+    Route::post('/roles/create', [RoleController::class, 'create'])
+        ->name('roles.create');
 
-Route::get('/users/{id}', [UserController::class, 'get'])
-    ->name('users.get');
+    Route::delete('/roles/{id}', [RoleController::class, 'delete'])
+        ->name('roles.delete');
 
-Route::put('/users/{id}', [UserController::class, 'update'])
-    ->name('users.update');
+    // Users
+    Route::get('/users', [UserController::class, 'index'])
+        ->name('users.index');
 
-Route::post('/users/create', [UserController::class, 'create'])
-    ->name('users.create');
+    Route::get('/users/{id}', [UserController::class, 'get'])
+        ->name('users.get');
 
-Route::delete('/users/{id}', [UserController::class, 'delete'])
-    ->name('users.delete');
+    Route::put('/users/{id}', [UserController::class, 'update'])
+        ->name('users.update');
+
+    Route::post('/users/create', [UserController::class, 'create'])
+        ->name('users.create');
+
+    Route::delete('/users/{id}', [UserController::class, 'delete'])
+        ->name('users.delete');
+
+});
